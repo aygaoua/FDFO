@@ -6,7 +6,7 @@
 /*   By: azgaoua <azgaoua@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 11:43:35 by azgaoua           #+#    #+#             */
-/*   Updated: 2023/06/22 19:40:06 by azgaoua          ###   ########.fr       */
+/*   Updated: 2023/06/24 23:19:57 by azgaoua          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int     ft_get_width(char *n_file)
     return (width);
 }
 
-void    ft_fill_matrix(int *line_z, char *line)
+void    ft_fill_matrix(int *line_z, char *line, fdf *info)
 {
     int     i;
     char    **split;
@@ -53,8 +53,7 @@ void    ft_fill_matrix(int *line_z, char *line)
     split = ft_split(line, ' ');
     while (split[i])
     {
-        line_z[i] = ft_atoi(split[i]);
-        free (split[i]);
+        line_z[i] = atoi(split[i]);
         i++;
     }
     free(split);
@@ -66,19 +65,18 @@ void    ft_read_file(char *n_file, fdf *info)
     char    *ligne;
     int     i;
     
+    fd = open(n_file, O_RDONLY, 0);
     info->height = ft_get_height(n_file);
     info->width = ft_get_width(n_file);
     info->z_mtx = (int**)malloc(8 * (info->height + 1));
     i = 0;
     while (i <= info->height)
         info->z_mtx[i++] = (int*)malloc(4 * (info->width + 1));
-    fd = open(n_file, O_RDONLY, 0);
     i = 0;
-    // ligne = get_next_line(fd);
     while (i < info->height + 1)
     {
         ligne = get_next_line(fd);
-        ft_fill_matrix(info->z_mtx[i], ligne);
+        ft_fill_matrix(info->z_mtx[i], ligne, info);
         free(ligne);
         i++;
     }
