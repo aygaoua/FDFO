@@ -1,6 +1,6 @@
 # FDFO
 graphics
-V 1
+V 1.2
 to commpile this you shoud type : 
 gcc *.c libft/libft.a -o fdfo
 then :
