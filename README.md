@@ -12,4 +12,4 @@ then :
 
 ./fdfo test_maps/<name of your map>.fdf
 
-continue working on this project when im freezing (in win11 "to hard !!")
+continue working on this project when im freezing (in win11 && ubuntu "to hard !!")
