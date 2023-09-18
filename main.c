@@ -52,7 +52,7 @@ int main(int ac, char **av)
 	info->win_ptr = mlx_new_window(info->mlx_ptr, 1920, 1080, "fdf");
     info->zoom = 20;
     ft_draw(info);
-	mlx_key_hook(info->win_ptr, ft_deal_key, info);
+    mlx_key_hook(info->win_ptr, ft_deal_key, info);
     mlx_loop(info->mlx_ptr);
     return (0);
 }
