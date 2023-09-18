@@ -6,7 +6,7 @@
 /*   By: azgaoua <azgaoua@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 11:02:53 by azgaoua           #+#    #+#             */
-/*   Updated: 2023/06/24 22:35:27 by azgaoua          ###   ########.fr       */
+/*   Updated: 2023/09/18 04:01:22 by azgaoua          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 void	ft_isometric(float *x, float *y, int z)
 {
+	float old_x = *x;
+	
 	*x = (*x - *y) * cos(TITA);
-	*y = (*x + *y) * sin(TITA) - z;
+	*y = (old_x + *y) * sin(TITA) - z;
 }
 
 void	ft_zoom(float *x, float *y, fdf *info)
@@ -39,14 +41,21 @@ void	ftget_e_x_and_e_y(float *e_x, float *e_y)
 	*e_y /= maxi;
 }
 
+// void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+// {
+// 	char	*dst;
+
+// 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+// 	*(unsigned int*)dst = color;
+// }
+
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
-	int offset;
 
-	offset = (y * data->line_length + x * (data->bits_per_pixel / 8));
-	dst = data->addr + offset;
-	*(unsigned int*)dst = color;
+	dst = data->addr + (y * data->line_length + \
+	x * (data->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
 }
 
 void	bresenham(float x, float y, float x0, float y0, fdf *info)
@@ -77,7 +86,10 @@ void	bresenham(float x, float y, float x0, float y0, fdf *info)
 	e_y /= maxi;
 	while ((int)(x - x0) || (int)(y - y0))
 	{
-		mlx_pixel_put(info->mlx_ptr, info->win_ptr, x, y, info->color);
+		if ((y < 1058 || x > 240) && (x < 1590 || y >= 380))
+			mlx_pixel_put(info->mlx_ptr, info->win_ptr, x, y, info->color);
+		else
+			break ;
 		x += e_x;
 		y += e_y;
 	}
