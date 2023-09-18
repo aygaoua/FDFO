@@ -81,7 +81,7 @@ void							ft_lstdelone(t_list *lst, void (*del)(void *));
 void							ft_lstclear(t_list **lst, void (*del)(void *));
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 100
+#  define BUFFER_SIZE 3000
 # endif
 
 char		*get_next_line(int fd);
