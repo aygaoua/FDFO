@@ -6,7 +6,7 @@
 /*   By: azgaoua <azgaoua@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 22:05:32 by azgaoua           #+#    #+#             */
-/*   Updated: 2023/09/18 04:10:57 by azgaoua          ###   ########.fr       */
+/*   Updated: 2023/09/18 13:36:43 by azgaoua          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,9 @@ void	ft_draw(fdf *info)
     while (i_guide < 1920)
         mlx_pixel_put(info->mlx_ptr, info->win_ptr, i_guide++, 400, 0XFFFFFF);
 	j = 0;
+	info->mlx.img = mlx_new_image(info->mlx_ptr, 1920, 1080);
+	info->mlx.addr = mlx_get_data_addr(info->mlx.img, &info->mlx.bits_per_pixel, &info->mlx.line_length,
+								&info->mlx.endian);
 	while (j < info->height)
 	{
 		i = 0;

@@ -6,7 +6,7 @@
 /*   By: azgaoua <azgaoua@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 11:02:53 by azgaoua           #+#    #+#             */
-/*   Updated: 2023/09/18 04:01:22 by azgaoua          ###   ########.fr       */
+/*   Updated: 2023/09/18 13:35:31 by azgaoua          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,14 @@ void	bresenham(float x, float y, float x0, float y0, fdf *info)
 	e_y /= maxi;
 	while ((int)(x - x0) || (int)(y - y0))
 	{
-		if ((y < 1058 || x > 240) && (x < 1590 || y >= 380))
-			mlx_pixel_put(info->mlx_ptr, info->win_ptr, x, y, info->color);
+		if ((y < 1058 || x > 240) && (x < 1590 || y > 399))
+		{
+			my_mlx_pixel_put(&info->mlx, (int )x, (int )y, info->color);
+		}
 		else
 			break ;
 		x += e_x;
 		y += e_y;
 	}
+	mlx_put_image_to_window(info->mlx_ptr, info->win_ptr, info->mlx.img, 0, 0);
 }
