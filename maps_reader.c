@@ -69,9 +69,15 @@ void    ft_read_file(char *n_file, fdf *info)
     info->height = ft_get_height(n_file);
     info->width = ft_get_width(n_file);
     info->z_mtx = (int**)malloc(8 * (info->height + 1));
+    if (info->z_mtx == NULL)
+        return ;
     i = 0;
     while (i <= info->height)
+    {
         info->z_mtx[i++] = (int*)malloc(4 * (info->width + 1));
+        if (info->z_mtx[i - 1] == NULL)
+            return ;
+    }
     i = 0;
     while (i < info->height + 1)
     {
