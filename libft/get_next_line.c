@@ -92,18 +92,3 @@ char	*ft_free_and_join(char *helper, char *line)
 	free(helper);
 	return (tmp1);
 }
-// int main()
-// {
-// 	char *line;
-// 	int fd = open("test", O_RDONLY);
-// 	int i = 0;
-// 	while (i < 6)
-// 	{
-// 		line = get_next_line(fd);
-// 		printf("%s", line);
-// 		free(line);
-// 		i++;
-// 	}
-// 	close(fd);
- 	// return (1);
-// }
