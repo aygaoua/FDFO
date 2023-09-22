@@ -6,7 +6,7 @@
 /*   By: azgaoua <azgaoua@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 22:05:32 by azgaoua           #+#    #+#             */
-/*   Updated: 2023/09/18 13:36:43 by azgaoua          ###   ########.fr       */
+/*   Updated: 2023/09/22 02:56:27 by azgaoua          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,22 +30,7 @@ void	ft_draw(fdf *info)
 {
 	int	i;
 	int	j;
-	int	i_guide = 1590;
-	int	j_guide = 0;
-
-	mlx_string_put(info->mlx_ptr, info->win_ptr, 1700, 30, 0XFFFFFF, "GUIDE :");
-    mlx_string_put(info->mlx_ptr, info->win_ptr, 1700, 35, 0XFFFFFF, "_______");
-    mlx_string_put(info->mlx_ptr, info->win_ptr, 1650, 100, 0XFFFFFF, "-->\"+\" TO ZOOM IN");
-    mlx_string_put(info->mlx_ptr, info->win_ptr, 1650, 150, 0XFFFFFF, "-->\"-\" TO ZOOM OUT"); // ↑ ↓ → ←
-    mlx_string_put(info->mlx_ptr, info->win_ptr, 1650, 200, 0XFFFFFF, "-->\" v \" TO MOUVE DOWN");
-    mlx_string_put(info->mlx_ptr, info->win_ptr, 1650, 250, 0XFFFFFF, "-->\" ^ \" TO MOUVE UP");
-    mlx_string_put(info->mlx_ptr, info->win_ptr, 1650, 300, 0XFFFFFF, "-->\" > \" TO MOUVE RIGHT");
-    mlx_string_put(info->mlx_ptr, info->win_ptr, 1650, 350, 0XFFFFFF, "-->\" < \" TO MOUVE LEFT");
-    mlx_string_put(info->mlx_ptr, info->win_ptr, 0, 1058, 0XFFFFFF, "@aygaoua coppywright !!");
-	while (j_guide < 400)
-        mlx_pixel_put(info->mlx_ptr, info->win_ptr, i_guide, j_guide++, 0XFFFFFF);
-    while (i_guide < 1920)
-        mlx_pixel_put(info->mlx_ptr, info->win_ptr, i_guide++, 400, 0XFFFFFF);
+	
 	j = 0;
 	info->mlx.img = mlx_new_image(info->mlx_ptr, 1920, 1080);
 	info->mlx.addr = mlx_get_data_addr(info->mlx.img, &info->mlx.bits_per_pixel, &info->mlx.line_length,
@@ -63,4 +48,5 @@ void	ft_draw(fdf *info)
 		}
 		j++;
 	}
+	mlx_string_put(info->mlx_ptr, info->win_ptr, 790, 520, 0XFFFF00, "WA 3LA 9WADA !!");
 }

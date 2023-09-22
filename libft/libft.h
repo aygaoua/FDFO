@@ -6,7 +6,7 @@
 /*   By: azgaoua <azgaoua@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 09:45:32 by azgaoua           #+#    #+#             */
-/*   Updated: 2023/09/18 14:50:25 by azgaoua          ###   ########.fr       */
+/*   Updated: 2023/09/18 16:19:12 by azgaoua          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void							ft_lstclear(t_list **lst, void (*del)(void *));
 char		*get_next_line(int fd);
 char		*rdwr_and_search(int fd, char *helper);
 char		*ft_strjoin_gnl(char *s1, char *s2);
+// int			search_nl(char *S);
 void		ft_bzero_gnl(void *s, size_t nbr);
 void		*ft_calloc_gnl(size_t count);
 size_t		ft_strlen_gnl(const char *str);

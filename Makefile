@@ -6,7 +6,7 @@
 #    By: azgaoua <azgaoua@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/07 01:13:53 by azgaoua           #+#    #+#              #
-#    Updated: 2023/09/18 13:15:55 by azgaoua          ###   ########.fr        #
+#    Updated: 2023/09/19 22:03:23 by azgaoua          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ all :  $(NAME)
 
 $(NAME) : $(OBJS) 
 	@echo " making the FDFO"
+	cd libft && make && make clean
 	@$(CC) $(OBJS) libft/libft.a -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 clean:

@@ -6,7 +6,7 @@
 /*   By: azgaoua <azgaoua@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 11:43:35 by azgaoua           #+#    #+#             */
-/*   Updated: 2023/09/17 19:11:01 by azgaoua          ###   ########.fr       */
+/*   Updated: 2023/09/18 16:05:36 by azgaoua          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void    ft_read_file(char *n_file, fdf *info)
     while (i <= info->height)
         info->z_mtx[i++] = (int*)malloc(4 * (info->width + 1));
     i = 0;
-    while (i < info->height + 1)
+    while (i < info->height)
     {
         ligne = get_next_line(fd);
         ft_fill_matrix(info->z_mtx[i], ligne);
