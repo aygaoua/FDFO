@@ -6,7 +6,7 @@
 #    By: azgaoua <azgaoua@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/16 08:06:59 by azgaoua           #+#    #+#              #
-#    Updated: 2023/06/22 16:59:38 by azgaoua          ###   ########.fr        #
+#    Updated: 2023/09/22 19:52:02 by azgaoua          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,7 @@ OBJ_BNS = $(bns_src:.c=.o)
 
 CC = cc
 
-CC_FLAGS = -Wall -Wextra -Werror
+CC_FLAGS = -Wall -Wextra -Werror 
 
 all: $(NAME)
 

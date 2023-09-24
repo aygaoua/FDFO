@@ -6,7 +6,7 @@
 /*   By: azgaoua <azgaoua@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 19:20:27 by azgaoua           #+#    #+#             */
-/*   Updated: 2022/11/18 03:42:42 by azgaoua          ###   ########.fr       */
+/*   Updated: 2023/09/23 00:27:29 by azgaoua          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,4 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 		f(j, &s[j]);
 		j++;
 	}
-}
-
-void	f(unsigned int k, char *g)
-{
-	k = 0;
-	*g -= 32;
-}
-int		main()
-{
-	char tab[] = "bibabrotha";
-
-	ft_striteri(tab, &f);
-	printf("%s", tab);
 }

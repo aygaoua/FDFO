@@ -6,18 +6,26 @@
 /*   By: azgaoua <azgaoua@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 09:45:32 by azgaoua           #+#    #+#             */
-/*   Updated: 2023/09/18 16:19:12 by azgaoua          ###   ########.fr       */
+/*   Updated: 2023/09/24 23:14:30 by azgaoua          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 50
+# endif
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdio.h>
 # include <string.h>
 # include <stdlib.h>
 
+typedef struct s_list
+{
+	void			*content;
+	struct s_list	*next;
+}					t_list;
 
 void							ft_putnbr_fd(int n, int fd);
 void							ft_putendl_fd(char *s, int fd);
@@ -64,14 +72,7 @@ char							*ft_strrchr(const char *s, int c);
 char							*ft_strnstr(const char *haystack,
 									const char *needle, size_t len);
 char							**ft_split(char const *s, char c);
-size_t	lignes(const char *s, char c);
-
-typedef struct s_list
-{
-	void			*content;
-	struct s_list	*next;
-}					t_list;
-
+size_t							lignes(const char *s, char c);
 t_list							*ft_lstlast(t_list *lst);
 t_list							*ft_lstnew(void *content);
 void							ft_lstadd_front(t_list **lst, t_list *new);
@@ -79,20 +80,15 @@ int								ft_lstsize(t_list *lst);
 void							ft_lstadd_back(t_list **lst, t_list *new);
 void							ft_lstdelone(t_list *lst, void (*del)(void *));
 void							ft_lstclear(t_list **lst, void (*del)(void *));
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
-# endif
-
-char		*get_next_line(int fd);
-char		*rdwr_and_search(int fd, char *helper);
-char		*ft_strjoin_gnl(char *s1, char *s2);
-// int			search_nl(char *S);
-void		ft_bzero_gnl(void *s, size_t nbr);
-void		*ft_calloc_gnl(size_t count);
-size_t		ft_strlen_gnl(const char *str);
-char		*ft_substr_gnl(char *s, unsigned int start, size_t len);
-char		*ft_strchr_gnl(char *s, int c);
-char		*ft_free_and_join(char *buffer, char *buf);
+char							*get_next_line(int fd);
+char							*rdwr_and_search(int fd, char *helper);
+char							*ft_strjoin_gnl(char *s1, char *s2);
+void							ft_bzero_gnl(void *s, size_t nbr);
+void							*ft_calloc_gnl(size_t count);
+size_t							ft_strlen_gnl(const char *str);
+char							*ft_substr_gnl(char *s, unsigned int start, \
+												size_t len);
+char							*ft_strchr_gnl(char *s, int c);
+char							*ft_free_and_join(char *buffer, char *buf);
 
 #endif

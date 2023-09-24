@@ -6,9 +6,10 @@
 /*   By: azgaoua <azgaoua@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 21:52:40 by azgaoua           #+#    #+#             */
-/*   Updated: 2022/10/18 15:01:59 by azgaoua          ###   ########.fr       */
+/*   Updated: 2023/09/23 00:26:05 by azgaoua          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
@@ -24,7 +25,7 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	{
 		while (haystack[i + j] == needle[j] && haystack[i + j] != '\0'
 			&& i + j < len)
-				j++;
+			j++;
 		if (needle[j] == '\0')
 			return ((char *) haystack + i);
 		i++;

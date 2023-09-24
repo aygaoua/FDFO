@@ -6,7 +6,7 @@
 /*   By: azgaoua <azgaoua@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 22:05:32 by azgaoua           #+#    #+#             */
-/*   Updated: 2023/09/22 02:56:27 by azgaoua          ###   ########.fr       */
+/*   Updated: 2023/09/23 18:44:53 by azgaoua          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,27 +26,31 @@ float	ft_mod(float a)
 	return (a);
 }
 
-void	ft_draw(fdf *info)
+void	ft_draw(t_fdf *info)
 {
-	int	i;
-	int	j;
-	
-	j = 0;
+	info->cordnt.y = 0;
 	info->mlx.img = mlx_new_image(info->mlx_ptr, 1920, 1080);
-	info->mlx.addr = mlx_get_data_addr(info->mlx.img, &info->mlx.bits_per_pixel, &info->mlx.line_length,
-								&info->mlx.endian);
-	while (j < info->height)
+	info->mlx.addr = mlx_get_data_addr(info->mlx.img, \
+	&info->mlx.bits_per_pixel, &info->mlx.line_length, &info->mlx.endian);
+	while (info->cordnt.y < info->height)
 	{
-		i = 0;
-		while (i < info->width)
+		info->cordnt.x = 0;
+		while (info->cordnt.x < info->width)
 		{
-			if (i < info->width - 1)
-				bresenham(i, j, i + 1, j, info);
-			if (j < info->height - 1)
-				bresenham(i, j, i, j + 1, info);
-			i++;
+			if (info->cordnt.x < info->width - 1)
+			{
+				info->cordnt.x0 = info->cordnt.x + 1;
+				info->cordnt.y0 = info->cordnt.y;
+				bresenham(info->cordnt, info);
+			}
+			if (info->cordnt.y < info->height - 1)
+			{
+				info->cordnt.y0 = info->cordnt.y + 1;
+				info->cordnt.x0 = info->cordnt.x;
+				bresenham(info->cordnt, info);
+			}
+			info->cordnt.x++;
 		}
-		j++;
+		info->cordnt.y++;
 	}
-	mlx_string_put(info->mlx_ptr, info->win_ptr, 790, 520, 0XFFFF00, "WA 3LA 9WADA !!");
 }

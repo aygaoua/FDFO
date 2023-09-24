@@ -6,80 +6,82 @@
 /*   By: azgaoua <azgaoua@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 11:43:35 by azgaoua           #+#    #+#             */
-/*   Updated: 2023/09/18 16:05:36 by azgaoua          ###   ########.fr       */
+/*   Updated: 2023/09/24 22:52:26 by azgaoua          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int     ft_get_height(char *n_file)
+int	ft_get_height(char *n_file)
 {
-    int     fd;
-    int     height;
+	int	fd;
+	int	height;
 
-    height = 0;
-    fd = open(n_file, O_RDONLY, 0);
-    while (1)
-    {
-        if (!get_next_line(fd))
-            break ;
-        height++;
-    }
-    close(fd);
-    return (height);
-}
-int     ft_get_width(char *n_file)
-{
-    int     fd;
-    int     width;
-    char    *line;
-
-    fd = open(n_file, O_RDONLY, 0);
-    line =  get_next_line(fd);
-    width = lignes(line, ' ') - 1; // lignes() is a function from libft ft_split.c
-    free(line);
-    close(fd);
-    return (width);
+	height = 0;
+	fd = open(n_file, O_RDONLY, 0);
+	while (1)
+	{
+		if (get_next_line(fd) == NULL)
+			break ;
+		height++;
+	}
+	close(fd);
+	return (height);
 }
 
-void    ft_fill_matrix(int *line_z, char *line)
+int	ft_get_width(char *n_file)
 {
-    int     i;
-    char    **split;
+	int		fd;
+	int		width;
+	char	*line;
 
-    if (!line)
-        return ;
-    i = 0;
-    split = ft_split(line, ' ');
-    while (split[i])
-    {
-        line_z[i] = atoi(split[i]);
-        i++;
-    }
-    free(split);
+	fd = open(n_file, O_RDONLY, 0);
+	line = get_next_line(fd);
+	width = lignes(line, ' ') - 1;
+	free(line);
+	close(fd);
+	return (width);
 }
 
-void    ft_read_file(char *n_file, fdf *info)
+void	ft_fill_matrix(int *line_z, char *line)
 {
-    int     fd;
-    char    *ligne;
-    int     i;
-    
-    fd = open(n_file, O_RDONLY, 0);
-    info->height = ft_get_height(n_file);
-    info->width = ft_get_width(n_file);
-    info->z_mtx = (int**)malloc(8 * (info->height + 1));
-    i = 0;
-    while (i <= info->height)
-        info->z_mtx[i++] = (int*)malloc(4 * (info->width + 1));
-    i = 0;
-    while (i < info->height)
-    {
-        ligne = get_next_line(fd);
-        ft_fill_matrix(info->z_mtx[i], ligne);
-        free(ligne);
-        i++;
-    }
-    close(fd);
-    info->z_mtx[i] = NULL;
+	int		i;
+	char	**split;
+
+	if (!line)
+		return ;
+	i = 0;
+	split = ft_split(line, ' ');
+	while (split[i] && (ft_isdigit(split[i][0]) || split[i][0] == ' '))
+	{
+		line_z[i] = atoi(split[i]);
+		free(split[i]);
+		i++;
+	}
+	free(split);
+}
+
+void	ft_read_file(char *n_file, t_fdf *info)
+{
+	int		fd;
+	char	*ligne;
+	int		i;
+
+	fd = open(n_file, O_RDONLY, 0);
+	info->height = ft_get_height(n_file);
+	info->width = ft_get_width(n_file);
+	info->z_mtx = (int **)malloc(8 * (info->height + 1));
+	i = 0;
+	while (i <= info->height)
+		info->z_mtx[i++] = (int *)malloc(4 * (info->width + 1));
+	i = 0;
+	while (i < info->height)
+	{
+		ligne = get_next_line(fd);
+		ft_fill_matrix(info->z_mtx[i], ligne);
+		free(ligne);
+		i++;
+	}
+	close(fd);
+	info->z_mtx[i] = NULL;
 }

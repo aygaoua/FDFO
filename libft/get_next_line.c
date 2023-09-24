@@ -6,7 +6,7 @@
 /*   By: azgaoua <azgaoua@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 14:04:42 by azgaoua           #+#    #+#             */
-/*   Updated: 2023/06/22 17:04:29 by azgaoua          ###   ########.fr       */
+/*   Updated: 2023/09/24 23:12:34 by azgaoua          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ char	*get_next_line(int fd)
 			line[sub] = helper[sub];
 		if (ft_strchr_gnl(helper, '\n'))
 		{
-			helper = ft_substr_gnl(helper, sub + 1, ft_strlen_gnl(helper) - sub - 1);
+			helper = ft_substr_gnl(helper, sub + 1, \
+						ft_strlen_gnl(helper) - sub - 1);
 			return (line[sub] = '\n', line);
 		}
 		else if (!ft_strchr_gnl(helper, '\n'))
@@ -92,18 +93,3 @@ char	*ft_free_and_join(char *helper, char *line)
 	free(helper);
 	return (tmp1);
 }
-// int main()
-// {
-// 	char *line;
-// 	int fd = open("test", O_RDONLY);
-// 	int i = 0;
-// 	while (i < 6)
-// 	{
-// 		line = get_next_line(fd);
-// 		printf("%s", line);
-// 		free(line);
-// 		i++;
-// 	}
-// 	close(fd);
- 	// return (1);
-// }
