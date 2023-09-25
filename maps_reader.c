@@ -6,7 +6,7 @@
 /*   By: azgaoua <azgaoua@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 11:43:35 by azgaoua           #+#    #+#             */
-/*   Updated: 2023/09/25 17:55:07 by azgaoua          ###   ########.fr       */
+/*   Updated: 2023/09/25 19:07:19 by azgaoua          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	ft_get_height(char *n_file)
 {
-	int	fd;
-	int	height;
-	char *line;
+	int		fd;
+	int		height;
+	char	*line;
 
 	height = 0;
 	fd = open(n_file, O_RDONLY, 0);
@@ -58,12 +58,15 @@ void	ft_fill_matrix(int *line_z, char *line)
 	free(line);
 	while (split[i])
 	{
+		if (ft_atoi(split[i]) == 4294967296)
+		{
+			ft_printf("wrong line !!\n");
+			exit(0);
+		}
 		line_z[i] = ft_atoi(split[i]);
-		ft_printf("%d ", line_z[i]);
 		free(split[i]);
 		i++;
 	}
-	printf("\n");
 	free(split);
 }
 
@@ -74,14 +77,13 @@ void	ft_read_file(char *n_file, t_fdf *info)
 	int		i;
 
 	fd = open(n_file, O_RDONLY, 0);
-	if (ft_get_height(n_file) == 0|| ft_get_width(n_file) == 0)
+	if (ft_get_height(n_file) == 0 || ft_get_width(n_file) == 0)
 	{
 		ft_printf("emty or non valid map !!");
 		exit (0);
 	}
 	info->height = ft_get_height(n_file);
 	info->width = ft_get_width(n_file);
-	ft_printf("height --> %d || width --> %d \n", ft_get_height(n_file), ft_get_width(n_file));
 	info->z_mtx = (int **)malloc(8 * (info->height + 1));
 	i = 0;
 	while (i <= info->height)
@@ -93,6 +95,5 @@ void	ft_read_file(char *n_file, t_fdf *info)
 		ft_fill_matrix(info->z_mtx[i], ligne);
 		i++;
 	}
-	// info->z_mtx[i] = NULL;
 	close(fd);
 }

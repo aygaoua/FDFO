@@ -6,21 +6,16 @@
 /*   By: azgaoua <azgaoua@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 11:21:50 by azgaoua           #+#    #+#             */
-/*   Updated: 2023/09/25 17:54:44 by azgaoua          ###   ########.fr       */
+/*   Updated: 2023/09/25 19:06:40 by azgaoua          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void vv()
-{
-	system("leaks fdf");
-}
 int	main(int ac, char **av)
 {
 	t_fdf		*info;
 
-	atexit(vv);
 	if (ac != 2 || ft_strncmp(av[1] + ft_strlen(av[1]) - 4, ".fdf", 4) || \
 		open(av[1], O_RDONLY, 0) == -1)
 	{
@@ -28,7 +23,6 @@ int	main(int ac, char **av)
 		return (0);
 	}
 	info = (t_fdf *)malloc(sizeof(t_fdf));
-	printf("-----> %lu \n", sizeof(t_fdf));
 	ft_read_file(av[1], info);
 	ft_init_struct(info);
 	ft_draw(info);
@@ -56,16 +50,6 @@ int	ft_deal_key(int k, t_fdf *info)
 	ft_printf("Key : %d\n", k);
 	if (k == 53)
 	{
-		// int i;
-
-		// i = 0;
-		// while (i < info->height)
-		// {
-		// 	free(info->z_mtx[i]);
-		// 	i++;
-		// }
-		// free(info->z_mtx);
-		// free(info);
 		ft_printf("good bye, have a nice day !!");
 		exit(0);
 	}

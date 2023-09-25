@@ -6,7 +6,7 @@
 /*   By: azgaoua <azgaoua@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 09:45:32 by azgaoua           #+#    #+#             */
-/*   Updated: 2023/09/25 18:01:52 by azgaoua          ###   ########.fr       */
+/*   Updated: 2023/09/25 19:02:49 by azgaoua          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int								ft_toupper(int c);
 int								ft_tolower(int c);
 int								ft_strncmp(const char *s1, const char *s2,
 									size_t n);
-int								ft_atoi(const char *str);
+long long						ft_atoi(const char *str);
 size_t							ft_strlen(const char *s);
 size_t							ft_strlcpy(char *dst, const char *src,
 									size_t size);
