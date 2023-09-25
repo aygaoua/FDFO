@@ -2,7 +2,7 @@
 
 graphics
 
-V 1.2
+V 1.8
 
 to commpile this you shoud type : 
 
