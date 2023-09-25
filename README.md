@@ -6,7 +6,7 @@ V 1.8
 
 to commpile this you shoud type : 
 
-gcc *.c libft/libft.a -o fdfo
+make && make clean
 
 then :
 
