@@ -6,7 +6,7 @@
 /*   By: azgaoua <azgaoua@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 11:21:50 by azgaoua           #+#    #+#             */
-/*   Updated: 2023/09/24 22:59:54 by azgaoua          ###   ########.fr       */
+/*   Updated: 2023/09/25 17:54:44 by azgaoua          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	main(int ac, char **av)
 		return (0);
 	}
 	info = (t_fdf *)malloc(sizeof(t_fdf));
+	printf("-----> %lu \n", sizeof(t_fdf));
 	ft_read_file(av[1], info);
 	ft_init_struct(info);
 	ft_draw(info);
@@ -55,6 +56,16 @@ int	ft_deal_key(int k, t_fdf *info)
 	ft_printf("Key : %d\n", k);
 	if (k == 53)
 	{
+		// int i;
+
+		// i = 0;
+		// while (i < info->height)
+		// {
+		// 	free(info->z_mtx[i]);
+		// 	i++;
+		// }
+		// free(info->z_mtx);
+		// free(info);
 		ft_printf("good bye, have a nice day !!");
 		exit(0);
 	}

@@ -6,14 +6,14 @@
 /*   By: azgaoua <azgaoua@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 09:45:32 by azgaoua           #+#    #+#             */
-/*   Updated: 2023/09/24 23:14:30 by azgaoua          ###   ########.fr       */
+/*   Updated: 2023/09/25 18:01:52 by azgaoua          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 50
+#  define BUFFER_SIZE 1
 # endif
 # include <unistd.h>
 # include <fcntl.h>
