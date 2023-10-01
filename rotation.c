@@ -6,7 +6,7 @@
 /*   By: azgaoua <azgaoua@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 16:54:17 by azgaoua           #+#    #+#             */
-/*   Updated: 2023/09/25 16:39:56 by azgaoua          ###   ########.fr       */
+/*   Updated: 2023/09/30 21:12:07 by azgaoua          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,30 +19,8 @@ void	ft_rotation_z(float *x, float *y)
 
 	old_x = *x;
 	old_y = *y;
-	*x = old_x * cos(TITA) - old_y * sin(TITA);
-	*y = old_x * sin(TITA) + old_y * cos(TITA); 
-}
-
-void	ft_rotation_x(float *y, int *z)
-{
-	float	old_y;
-	int		old_z;
-
-	old_y = *y;
-	old_z = *z;
-	*y = old_y * cos(TITA) + old_z * sin(TITA);
-	*z = -old_y * sin(TITA) + old_z * cos(TITA);
-}
-
-void	ft_rotation_y(float *x, int *z)
-{
-	float	old_x;
-	int		old_z;
-
-	old_x = *x;
-	old_z = *z;
-	*x = old_x * cos(TITA) + old_z * sin(TITA);
-	*z = -old_x * sin(TITA) + old_z * cos(TITA);
+	*x = (old_x * cos(TITA)) - (old_y * sin(TITA));
+	*y = (old_x * sin(TITA)) + (old_y * cos(TITA)); 
 }
 
 void	ft_renew(int i_guide, int j_guide, t_fdf *info)
@@ -73,6 +51,21 @@ void	ft_renew(int i_guide, int j_guide, t_fdf *info)
 					"@aygaoua copyright©. !!");
 }
 
+void	ft_check_rot(t_cordnt *cordnt, t_fdf *info)
+{
+	int	i;
+
+	i = 0;
+	if (info->rot_z == 12)
+		info->rot_z = 0;
+	while (info->rot_z - i != 0)
+	{
+		ft_rotation_z(&cordnt->x, &cordnt->y);
+		ft_rotation_z(&cordnt->x0, &cordnt->y0);
+		i++;
+	}
+}
+
 void	ft_inits(t_cordnt *cordnt, int *z, int *z0, t_fdf *info)
 {
 	*z = info->z_mtx[(int)cordnt->y][(int)cordnt->x];
@@ -91,8 +84,34 @@ void	ft_inits(t_cordnt *cordnt, int *z, int *z0, t_fdf *info)
 		info->color = 0XFFFFFF;
 	ft_zoom(&cordnt->x, &cordnt->y, info);
 	ft_zoom(&cordnt->x0, &cordnt->y0, info);
-	ft_isometric(&cordnt->x, &cordnt->y, *z, info);
-	ft_isometric(&cordnt->x0, &cordnt->y0, *z0, info);
+	if (info->view % 3 == 0)
+	{
+		ft_isometric(&cordnt->x, &cordnt->y, *z, info);
+		ft_isometric(&cordnt->x0, &cordnt->y0, *z0, info);
+	}
+	ft_check_rot(cordnt, info);
 	ft_shift(&cordnt->x, &cordnt->y, info);
 	ft_shift(&cordnt->x0, &cordnt->y0, info);
+}
+
+void	ft_key(int k, t_fdf *info)
+{
+	if (k == 125)
+		info->sh_y += 50;
+	if (k == 123)
+		info->sh_x -= 50;
+	if (k == 124)
+		info->sh_x += 50;
+	if (k == 24)
+		info->z_atitude++;
+	if (k == 27)
+		info->z_atitude--;
+	if (k == 69)
+		info->zoom++;
+	if (k == 78)
+		info->zoom /= 1.1;
+	if (k == 15)
+		info->rot_z++;
+	if (k == 35)
+		info->view += 1;
 }

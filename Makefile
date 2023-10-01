@@ -6,7 +6,7 @@
 #    By: azgaoua <azgaoua@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/07 01:13:53 by azgaoua           #+#    #+#              #
-#    Updated: 2023/09/25 18:44:46 by azgaoua          ###   ########.fr        #
+#    Updated: 2023/09/29 18:43:18 by azgaoua          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ CC = cc
 
 RM = rm -rf
 
-FLGS = -Wall -Wextra -Werror 
+FLGS = -Wall -Wextra -Werror
 
 all :  $(NAME)
 
@@ -28,7 +28,7 @@ $(NAME) : $(OBJS)
 	@echo " making the FDFO"
 	cd libft && make bonus && make clean
 	cd printo && make && make clean
-	@$(CC) $(OBJS) libft/libft.a printo/myprintf.a -lmlx -framework OpenGL -framework AppKit  -o $(NAME)
+	@$(CC) $(FLGS) $(OBJS) libft/libft.a printo/myprintf.a -lmlx -framework OpenGL -framework AppKit  -o $(NAME)
 
 %.o: %.c fdf.h ./printo/ft_printf.h ./libft/libft.h
 	@echo " creating : $@  (from this : >> $< <<) \n\\---***___***---***___***---***___***---***___***---\\"

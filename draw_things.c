@@ -6,7 +6,7 @@
 /*   By: azgaoua <azgaoua@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 22:05:32 by azgaoua           #+#    #+#             */
-/*   Updated: 2023/09/23 18:44:53 by azgaoua          ###   ########.fr       */
+/*   Updated: 2023/09/26 16:35:54 by azgaoua          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,18 @@ float	ft_mod(float a)
 	return (a);
 }
 
+void	ft_set_one(t_cordnt *cordnt)
+{
+	cordnt->x0 = cordnt->x + 1;
+	cordnt->y0 = cordnt->y;
+}
+
+void	ft_set_tow(t_cordnt *cordnt)
+{
+	cordnt->y0 = cordnt->y + 1;
+	cordnt->x0 = cordnt->x;
+}
+
 void	ft_draw(t_fdf *info)
 {
 	info->cordnt.y = 0;
@@ -39,18 +51,18 @@ void	ft_draw(t_fdf *info)
 		{
 			if (info->cordnt.x < info->width - 1)
 			{
-				info->cordnt.x0 = info->cordnt.x + 1;
-				info->cordnt.y0 = info->cordnt.y;
+				ft_set_one(&info->cordnt);
 				bresenham(info->cordnt, info);
 			}
 			if (info->cordnt.y < info->height - 1)
 			{
-				info->cordnt.y0 = info->cordnt.y + 1;
-				info->cordnt.x0 = info->cordnt.x;
+				ft_set_tow(&info->cordnt);
 				bresenham(info->cordnt, info);
 			}
 			info->cordnt.x++;
 		}
 		info->cordnt.y++;
 	}
+	mlx_string_put(info->mlx_ptr, info->win_ptr, 1920 / 2 - 100, \
+	1058 / 2, 0XFFF000, "click any button to start !!");
 }

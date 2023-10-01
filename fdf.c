@@ -6,7 +6,7 @@
 /*   By: azgaoua <azgaoua@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 11:02:53 by azgaoua           #+#    #+#             */
-/*   Updated: 2023/09/23 21:31:31 by azgaoua          ###   ########.fr       */
+/*   Updated: 2023/09/28 20:01:18 by azgaoua          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	ft_zoom(float *x, float *y, t_fdf *info)
 
 void	ft_shift(float *x, float *y, t_fdf *info)
 {
-	*x += info->sh_x + 200;
-	*y += info->sh_y + 200;
+	*x += info->sh_x + (1920 / 2) - 250;
+	*y += info->sh_y + (1080 / 2) - 400;
 }
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)

@@ -6,14 +6,14 @@
 /*   By: azgaoua <azgaoua@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 09:45:32 by azgaoua           #+#    #+#             */
-/*   Updated: 2023/09/25 19:02:49 by azgaoua          ###   ########.fr       */
+/*   Updated: 2023/09/30 21:21:19 by azgaoua          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
+#  define BUFFER_SIZE 4096
 # endif
 # include <unistd.h>
 # include <fcntl.h>
@@ -67,7 +67,7 @@ size_t							ft_strlcpy(char *dst, const char *src,
 size_t							ft_strlcat(char *dst, const char *src,
 									size_t	size);
 void							*ft_memset(void *b, int c, size_t len);
-char							*ft_strchr(const char *s, int c);
+int								ft_strchr(const char *s, int c);
 char							*ft_strrchr(const char *s, int c);
 char							*ft_strnstr(const char *haystack,
 									const char *needle, size_t len);

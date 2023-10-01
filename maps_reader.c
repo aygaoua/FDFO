@@ -6,7 +6,7 @@
 /*   By: azgaoua <azgaoua@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 11:43:35 by azgaoua           #+#    #+#             */
-/*   Updated: 2023/09/25 19:07:19 by azgaoua          ###   ########.fr       */
+/*   Updated: 2023/09/30 20:32:38 by azgaoua          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_get_height(char *n_file)
 	char	*line;
 
 	height = 0;
-	fd = open(n_file, O_RDONLY, 0);
+	fd = open(n_file, O_RDONLY);
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -29,6 +29,7 @@ int	ft_get_height(char *n_file)
 		height++;
 	}
 	close(fd);
+	ft_printf("%d ||| \n", height);
 	return (height);
 }
 
@@ -38,32 +39,59 @@ int	ft_get_width(char *n_file)
 	int		width;
 	char	*line;
 
-	fd = open(n_file, O_RDONLY, 0);
+	fd = open(n_file, O_RDONLY);
 	line = get_next_line(fd);
 	width = lignes(line, ' ') - 1;
 	free(line);
+	ft_printf("%d ||| \n", width);
 	close(fd);
 	return (width);
 }
 
-void	ft_fill_matrix(int *line_z, char *line)
-{
-	int		i;
-	char	**split;
+// void	ft_fill_matrix(int *line_z, char *line)
+// {
+// 	int		i;
+// 	char	**split;
 
-	if (!line)
-		return ;
+// 	i = 0;
+// 	split = ft_split(line, ' ');
+// 	free(line);
+// 	while (split[i])
+// 	{
+// 		if (ft_atoi(split[i]) == 4294967296)
+// 		{
+// 			ft_printf("wrong line !!\n");
+// 			exit(0);
+// 		}
+// 		line_z[i] = (int )ft_atoi(split[i]);
+// 		free(split[i]);
+// 		i++;
+// 	}
+// 	free(split);
+// }
+
+void 	ft_fill_matrix(int **line_z, char *line, t_fdf *info)
+{
+	int i;
+	char **split;
+	int num;
+
 	i = 0;
 	split = ft_split(line, ' ');
 	free(line);
-	while (split[i])
+	*line_z = (int *)malloc(info->width * sizeof(int));
+	if (*line_z == NULL)
+		exit(1);
+	while (split[i]) 
 	{
-		if (ft_atoi(split[i]) == 4294967296)
+		num = ft_atoi(split[i]);
+		if (num == 0 && split[i][0] != '0')
 		{
-			ft_printf("wrong line !!\n");
-			exit(0);
+			ft_printf("Invalid integer: \"%s\"\n", split[i]);
+			free(*line_z);
+			exit(1);
 		}
-		line_z[i] = ft_atoi(split[i]);
+		(*line_z)[i] = num;
 		free(split[i]);
 		i++;
 	}
@@ -76,23 +104,17 @@ void	ft_read_file(char *n_file, t_fdf *info)
 	char	*ligne;
 	int		i;
 
-	fd = open(n_file, O_RDONLY, 0);
-	if (ft_get_height(n_file) == 0 || ft_get_width(n_file) == 0)
-	{
-		ft_printf("emty or non valid map !!");
-		exit (0);
-	}
 	info->height = ft_get_height(n_file);
 	info->width = ft_get_width(n_file);
 	info->z_mtx = (int **)malloc(8 * (info->height + 1));
 	i = 0;
-	while (i <= info->height)
-		info->z_mtx[i++] = (int *)malloc(4 * (info->width + 1));
-	i = 0;
+	fd = open(n_file, O_RDONLY);
 	while (i < info->height)
 	{
 		ligne = get_next_line(fd);
-		ft_fill_matrix(info->z_mtx[i], ligne);
+		if (ligne == NULL)
+			break ;
+		ft_fill_matrix(&info->z_mtx[i], ligne, info);
 		i++;
 	}
 	close(fd);

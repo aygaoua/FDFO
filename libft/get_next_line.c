@@ -6,11 +6,12 @@
 /*   By: azgaoua <azgaoua@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 14:04:42 by azgaoua           #+#    #+#             */
-/*   Updated: 2023/09/24 23:12:34 by azgaoua          ###   ########.fr       */
+/*   Updated: 2023/09/27 23:50:46 by azgaoua          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "../fdf.h"
 
 char	*get_next_line(int fd)
 {
