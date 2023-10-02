@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.c                                              :+:      :+:    :+:   */
+/*   fdf_bonus.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: azgaoua <azgaoua@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/21 11:02:53 by azgaoua           #+#    #+#             */
-/*   Updated: 2023/10/01 22:55:49 by azgaoua          ###   ########.fr       */
+/*   Created: 2023/10/01 16:01:41 by azgaoua           #+#    #+#             */
+/*   Updated: 2023/10/01 20:03:30 by azgaoua          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	ft_isometric(float *x, float *y, int z, t_fdf *info)
+void	ft_isometric_bonus(float *x, float *y, int z, t_fdf *info)
 {
 	float	old_x;
 
@@ -21,19 +21,19 @@ void	ft_isometric(float *x, float *y, int z, t_fdf *info)
 	*y = (old_x + *y) * sin(info->tita) - z;
 }
 
-void	ft_zoom(float *x, float *y, t_fdf *info)
+void	ft_zoom_bonus(float *x, float *y, t_fdf *info)
 {
 	*x *= info->zoom;
 	*y *= info->zoom;
 }
 
-void	ft_shift(float *x, float *y, t_fdf *info)
+void	ft_shift_bonus(float *x, float *y, t_fdf *info)
 {
 	*x += info->sh_x + (1920 / 2) - 250;
-	*y += info->sh_y + (1080 / 2) - 350;
+	*y += info->sh_y + (1080 / 2) - 400;
 }
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+void	my_mlx_pixel_put_bonus(t_data *data, int x, int y, int color)
 {
 	char	*dst;
 
@@ -42,7 +42,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	bresenham(t_cordnt cordnt, t_fdf *info)
+void	bresenham_bonus(t_cordnt cordnt, t_fdf *info)
 {
 	float	e_x;
 	float	e_y;
@@ -50,17 +50,17 @@ void	bresenham(t_cordnt cordnt, t_fdf *info)
 	int		z;
 	int		z0;
 
-	ft_inits(&cordnt, &z, &z0, info);
+	ft_inits_bonus(&cordnt, &z, &z0, info);
 	e_x = cordnt.x0 - cordnt.x;
 	e_y = cordnt.y0 - cordnt.y;
-	maxi = max(ft_mod(e_x), ft_mod(e_y));
+	maxi = max_bonus(ft_mod_bonus(e_x), ft_mod_bonus(e_y));
 	e_x /= maxi;
 	e_y /= maxi;
 	while (((int )(cordnt.x - cordnt.x0) || (int )(cordnt.y - cordnt.y0)) \
 	&& cordnt.x <= 1920 && cordnt.y <= 1080 && cordnt.x >= 0 && cordnt.y >= 0)
 	{
-		if (cordnt.x > 230 || cordnt.y < 1058)
-			my_mlx_pixel_put(&info->mlx, (int )cordnt.x, (int )cordnt.y, \
+		if (cordnt.x < 1590 || cordnt.y > 400)
+			my_mlx_pixel_put_bonus(&info->mlx, (int )cordnt.x, (int )cordnt.y, \
 		info->color);
 		else
 			break ;

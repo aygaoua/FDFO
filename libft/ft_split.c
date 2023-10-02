@@ -6,7 +6,7 @@
 /*   By: azgaoua <azgaoua@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 23:04:20 by azgaoua           #+#    #+#             */
-/*   Updated: 2023/09/28 03:16:20 by azgaoua          ###   ########.fr       */
+/*   Updated: 2023/10/02 02:37:39 by azgaoua          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ size_t	lignes(const char *s, char c)
 
 	i = 0;
 	l = 0;
+	if (!s)
+		return (0);
 	while (s[i] != '\0')
 	{
 		if (s[i] != c)

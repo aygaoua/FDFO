@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   maps_reader.c                                      :+:      :+:    :+:   */
+/*   maps_reader_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: azgaoua <azgaoua@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/21 11:43:35 by azgaoua           #+#    #+#             */
-/*   Updated: 2023/10/02 01:59:59 by azgaoua          ###   ########.fr       */
+/*   Created: 2023/10/01 16:08:12 by azgaoua           #+#    #+#             */
+/*   Updated: 2023/10/02 02:35:45 by azgaoua          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	ft_get_height(char *n_file)
+int	ft_get_height_bonus(char *n_file)
 {
 	int		fd;
 	int		height;
@@ -32,7 +32,7 @@ int	ft_get_height(char *n_file)
 	return (height);
 }
 
-int	ft_get_width(char *n_file)
+int	ft_get_width_bonus(char *n_file)
 {
 	int		fd;
 	int		width;
@@ -46,7 +46,7 @@ int	ft_get_width(char *n_file)
 	return (width);
 }
 
-void	ft_fill_matrix(int **line_z, char *line, t_fdf *info)
+void	ft_fill_matrix_bonus(int **line_z, char *line, t_fdf *info)
 {
 	int		i;
 	char	**split;
@@ -74,15 +74,15 @@ void	ft_fill_matrix(int **line_z, char *line, t_fdf *info)
 	free(split);
 }
 
-void	ft_read_file(char *n_file, t_fdf *info)
+void	ft_read_file_bonus(char *n_file, t_fdf *info)
 {
 	int		fd;
 	char	*ligne;
 	int		i;
 
-	info->height = ft_get_height(n_file);
-	info->width = ft_get_width(n_file);
-	if (info->height <= 0 || info->width <= 0)
+	info->height = ft_get_height_bonus(n_file);
+	info->width = ft_get_width_bonus(n_file);
+	if (info->height == 0 || info->width == 0)
 	{
 		ft_printf("no data found. !!\n");
 		exit (0);
@@ -95,7 +95,7 @@ void	ft_read_file(char *n_file, t_fdf *info)
 		ligne = get_next_line(fd);
 		if (ligne == NULL)
 			break ;
-		ft_fill_matrix(&info->z_mtx[i], ligne, info);
+		ft_fill_matrix_bonus(&info->z_mtx[i], ligne, info);
 		i++;
 	}
 	close(fd);

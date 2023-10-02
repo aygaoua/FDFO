@@ -1,44 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_things.c                                      :+:      :+:    :+:   */
+/*   draw_things_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: azgaoua <azgaoua@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/22 22:05:32 by azgaoua           #+#    #+#             */
-/*   Updated: 2023/10/01 17:50:26 by azgaoua          ###   ########.fr       */
+/*   Created: 2023/10/01 16:00:54 by azgaoua           #+#    #+#             */
+/*   Updated: 2023/10/01 16:18:06 by azgaoua          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	max(int a, int b)
+int	max_bonus(int a, int b)
 {
 	if (a > b)
 		return (a);
 	return (b);
 }
 
-float	ft_mod(float a)
+float	ft_mod_bonus(float a)
 {
 	if (a < 0)
 		return (-a);
 	return (a);
 }
 
-void	ft_set_one(t_cordnt *cordnt)
+void	ft_set_one_bonus(t_cordnt *cordnt)
 {
 	cordnt->x0 = cordnt->x + 1;
 	cordnt->y0 = cordnt->y;
 }
 
-void	ft_set_tow(t_cordnt *cordnt)
+void	ft_set_tow_bonus(t_cordnt *cordnt)
 {
 	cordnt->y0 = cordnt->y + 1;
 	cordnt->x0 = cordnt->x;
 }
 
-void	ft_draw(t_fdf *info)
+void	ft_draw_bonus(t_fdf *info)
 {
 	info->cordnt.y = 0;
 	info->mlx.img = mlx_new_image(info->mlx_ptr, 1920, 1080);
@@ -51,17 +51,18 @@ void	ft_draw(t_fdf *info)
 		{
 			if (info->cordnt.x < info->width - 1)
 			{
-				ft_set_one(&info->cordnt);
-				bresenham(info->cordnt, info);
+				ft_set_one_bonus(&info->cordnt);
+				bresenham_bonus(info->cordnt, info);
 			}
 			if (info->cordnt.y < info->height - 1)
 			{
-				ft_set_tow(&info->cordnt);
-				bresenham(info->cordnt, info);
+				ft_set_tow_bonus(&info->cordnt);
+				bresenham_bonus(info->cordnt, info);
 			}
 			info->cordnt.x++;
 		}
 		info->cordnt.y++;
 	}
-	mlx_put_image_to_window(info->mlx_ptr, info->win_ptr, info->mlx.img, 0, 0);
+	mlx_string_put(info->mlx_ptr, info->win_ptr, 1920 / 2 - 100, \
+	1058 / 2, 0XFFF000, "click any button to start !!");
 }

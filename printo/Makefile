@@ -6,7 +6,7 @@
 #    By: azgaoua <azgaoua@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/22 23:48:44 by azgaoua           #+#    #+#              #
-#    Updated: 2023/09/29 18:43:14 by azgaoua          ###   ########.fr        #
+#    Updated: 2023/10/02 00:14:29 by azgaoua          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,11 +34,10 @@ all : $(NAME)
 
 %.o : %.c ft_printf.h
 			@$(CC) $(CFLAGS) -c $<
-			@echo " making : $@ \n (from this : >> $< <<) \n /-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-/"
 
 $(NAME) : $(OBJ)
 			@ar rc $(NAME) $(OBJ)
-			@echo "ft_printf Done finally !"
+			@echo "-----> ft_printf Done <-----"
 
 clean:
 		@$(RM) $(OBJ)

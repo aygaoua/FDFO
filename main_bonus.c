@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: azgaoua <azgaoua@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/21 11:21:50 by azgaoua           #+#    #+#             */
-/*   Updated: 2023/10/02 02:37:15 by azgaoua          ###   ########.fr       */
+/*   Created: 2023/10/01 16:02:57 by azgaoua           #+#    #+#             */
+/*   Updated: 2023/10/01 22:31:35 by azgaoua          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,33 +28,64 @@ int	main(int ac, char **av)
 	info = (t_fdf *)malloc(sizeof(t_fdf));
 	if (info == NULL)
 		exit(1);
-	ft_read_file(av[1], info);
-	ft_init_struct(info);
-	ft_draw(info);
-	mlx_key_hook(info->win_ptr, ft_deal_key, info);
-	mlx_hook(info->win_ptr, 17, 0, ft_exit_cross, info);
+	ft_read_file_bonus(av[1], info);
+	ft_init_struct_bonus(info);
+	ft_draw_bonus(info);
+	mlx_hook(info->win_ptr, 2, 0, ft_deal_key_bonus, info);
+	mlx_key_hook(info->win_ptr, ft_deal_key_bonus, info);
+	mlx_hook(info->win_ptr, 17, 0, ft_exit_cross_bonus, info);
 	mlx_loop(info->mlx_ptr);
 	return (0);
 }
 
-int	ft_exit_cross(void *g)
+int	ft_exit_cross_bonus(void *g)
 {
 	g = NULL;
 	ft_printf("good bye, have a nice day !!");
 	exit(0);
 }
 
-int	ft_deal_key(int k)
+int	ft_deal_key_bonus(int k, t_fdf *info)
 {
+	int	i_guide;
+	int	j_guide;
+
+	j_guide = 0;
+	i_guide = 1590;
+	ft_printf("Key : %d\n", k);
 	if (k == 53)
 	{
 		ft_printf("good bye, have a nice day !!");
 		exit(0);
 	}
+	if (k == 8)
+	{
+		if (info->ch_color == 2)
+			info->ch_color = 0;
+		else if (info->ch_color == 0)
+			info->ch_color = 1;
+		else if (info->ch_color == 1)
+			info->ch_color = 2;
+	}
+	ft_other_keys_bonus(k, info);
+	ft_renew_bonus(i_guide, j_guide, info);
 	return (0);
 }
 
-void	ft_init_struct(t_fdf *info)
+void	ft_other_keys_bonus(int k, t_fdf *info)
+{
+	if (k == 48)
+		info->tita -= 0.1;
+	if (k == 50)
+		info->tita += 0.1;
+	if (k == 256)
+		info->tita = M_PI / 6;
+	if (k == 126)
+		info->sh_y -= 50;
+	ft_key_bonus(k, info);
+}
+
+void	ft_init_struct_bonus(t_fdf *info)
 {
 	float	ratio_w;
 	float	ratio_h;
@@ -67,8 +98,12 @@ void	ft_init_struct(t_fdf *info)
 	info->mlx.addr = mlx_get_data_addr(info->mlx.img, \
 	&info->mlx.bits_per_pixel, &info->mlx.line_length, &info->mlx.endian);
 	info->tita = TITA;
+	info->z_atitude = 1;
+	info->ch_color = 0;
+	info->view = 0;
 	if ((float )(info->width / info->height) > (float )(16 / 9))
-		info->zoom = (int )(ratio_w);
+		info->zoom = (int )(ratio_w) + 1;
 	else
-		info->zoom = (int )(ratio_h) / 1.75;
+		info->zoom = (int )(ratio_h) / 1.5;
+	info->rot_z = 0;
 }

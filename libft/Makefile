@@ -6,7 +6,7 @@
 #    By: azgaoua <azgaoua@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/16 08:06:59 by azgaoua           #+#    #+#              #
-#    Updated: 2023/09/29 18:43:11 by azgaoua          ###   ########.fr        #
+#    Updated: 2023/10/02 00:13:08 by azgaoua          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,21 +68,18 @@ all: $(NAME)
 
 %.o : %.c libft.h
 	@$(CC) $(CC_FLAGS) -c $<
-	@echo " making : $@ \n (from this : >> $< <<) \n /-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-/"
 
 $(NAME): $(OBJS)
-	@ar r $(NAME) $(OBJS)
-	@echo "Libft Done finally !"
+					@ar rc $(NAME) $(OBJS)
+					@echo "-----> Libft Done <-----"
 
 bonus : $(OBJ_BNS) all
-	@ar r $(NAME) $(OBJ_BNS)
-	@echo "Bonus Done finally !"
+					@ar rc $(NAME) $(OBJ_BNS)
+					@echo "-----> Bonus Done <-----"
 clean:
-	@echo "clean all this files : --> $(OBJS) $(OBJ_BNS)"	
 	@rm -rf $(OBJS) $(OBJ_BNS)
 
 fclean: clean
-	@echo " + that --> $(NAME)"
-	@rm -f $(NAME)
+	@rm -rf $(NAME)
 
 re : fclean all
