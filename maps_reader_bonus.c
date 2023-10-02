@@ -6,7 +6,7 @@
 /*   By: azgaoua <azgaoua@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 16:08:12 by azgaoua           #+#    #+#             */
-/*   Updated: 2023/10/02 02:35:45 by azgaoua          ###   ########.fr       */
+/*   Updated: 2023/10/02 15:17:16 by azgaoua          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	ft_get_width_bonus(char *n_file)
 	return (width);
 }
 
-void	ft_fill_matrix_bonus(int **line_z, char *line, t_fdf *info)
+void	ft_fill_mtx_bonus(int **line_z, char *line, t_fdf *info)
 {
 	int		i;
 	char	**split;
@@ -88,6 +88,8 @@ void	ft_read_file_bonus(char *n_file, t_fdf *info)
 		exit (0);
 	}
 	info->z_mtx = (int **)malloc(8 * (info->height + 1));
+	if (info->z_mtx == NULL)
+		exit(0);
 	i = 0;
 	fd = open(n_file, O_RDONLY);
 	while (i < info->height)
@@ -95,7 +97,7 @@ void	ft_read_file_bonus(char *n_file, t_fdf *info)
 		ligne = get_next_line(fd);
 		if (ligne == NULL)
 			break ;
-		ft_fill_matrix_bonus(&info->z_mtx[i], ligne, info);
+		ft_fill_mtx_bonus(&info->z_mtx[i], ligne, info);
 		i++;
 	}
 	close(fd);

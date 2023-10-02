@@ -6,13 +6,13 @@
 /*   By: azgaoua <azgaoua@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 16:00:54 by azgaoua           #+#    #+#             */
-/*   Updated: 2023/10/01 16:18:06 by azgaoua          ###   ########.fr       */
+/*   Updated: 2023/10/02 15:14:27 by azgaoua          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	max_bonus(int a, int b)
+int	ft_max_bonus(int a, int b)
 {
 	if (a > b)
 		return (a);
@@ -52,12 +52,12 @@ void	ft_draw_bonus(t_fdf *info)
 			if (info->cordnt.x < info->width - 1)
 			{
 				ft_set_one_bonus(&info->cordnt);
-				bresenham_bonus(info->cordnt, info);
+				ft_bresenham_bonus(info->cordnt, info);
 			}
 			if (info->cordnt.y < info->height - 1)
 			{
 				ft_set_tow_bonus(&info->cordnt);
-				bresenham_bonus(info->cordnt, info);
+				ft_bresenham_bonus(info->cordnt, info);
 			}
 			info->cordnt.x++;
 		}

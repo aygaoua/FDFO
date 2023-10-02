@@ -6,13 +6,13 @@
 /*   By: azgaoua <azgaoua@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 22:05:32 by azgaoua           #+#    #+#             */
-/*   Updated: 2023/10/01 17:50:26 by azgaoua          ###   ########.fr       */
+/*   Updated: 2023/10/02 15:14:52 by azgaoua          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	max(int a, int b)
+int	ft_max(int a, int b)
 {
 	if (a > b)
 		return (a);
@@ -52,12 +52,12 @@ void	ft_draw(t_fdf *info)
 			if (info->cordnt.x < info->width - 1)
 			{
 				ft_set_one(&info->cordnt);
-				bresenham(info->cordnt, info);
+				ft_bresenham(info->cordnt, info);
 			}
 			if (info->cordnt.y < info->height - 1)
 			{
 				ft_set_tow(&info->cordnt);
-				bresenham(info->cordnt, info);
+				ft_bresenham(info->cordnt, info);
 			}
 			info->cordnt.x++;
 		}

@@ -6,7 +6,7 @@
 /*   By: azgaoua <azgaoua@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 16:01:41 by azgaoua           #+#    #+#             */
-/*   Updated: 2023/10/01 20:03:30 by azgaoua          ###   ########.fr       */
+/*   Updated: 2023/10/02 15:15:00 by azgaoua          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	my_mlx_pixel_put_bonus(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	bresenham_bonus(t_cordnt cordnt, t_fdf *info)
+void	ft_bresenham_bonus(t_cordnt cordnt, t_fdf *info)
 {
 	float	e_x;
 	float	e_y;
@@ -53,7 +53,7 @@ void	bresenham_bonus(t_cordnt cordnt, t_fdf *info)
 	ft_inits_bonus(&cordnt, &z, &z0, info);
 	e_x = cordnt.x0 - cordnt.x;
 	e_y = cordnt.y0 - cordnt.y;
-	maxi = max_bonus(ft_mod_bonus(e_x), ft_mod_bonus(e_y));
+	maxi = ft_max_bonus(ft_mod_bonus(e_x), ft_mod_bonus(e_y));
 	e_x /= maxi;
 	e_y /= maxi;
 	while (((int )(cordnt.x - cordnt.x0) || (int )(cordnt.y - cordnt.y0)) \
