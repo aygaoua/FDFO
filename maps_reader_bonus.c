@@ -61,7 +61,7 @@ void	ft_fill_mtx_bonus(int **line_z, char *line, t_fdf *info)
 	while (split[i]) 
 	{
 		num = ft_atoi(split[i]);
-		if (num == 0 && split[i][0] != '0' && split[i][0] != '\n')
+		if (num == 0 && split[i][0] != '0')
 		{
 			ft_printf("Invalid integer: \"%s\"\n", split[i]);
 			free(*line_z);
